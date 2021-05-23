@@ -1,0 +1,147 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="heading"><h1>HEART DISEASE PREDICTION</h1></div>
+    <div class="main">
+        <form method="post" action="predictHDisease" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div id="age">
+                <h2 class="name">AGE</h2>
+                <input class="age1" type="text" name="age" value=""><br>
+
+                <h2 class="name">GENDER</h2>
+                <label class="radio">
+                    <input type="radio" id="male" name="sex" value="0">
+                    <label class="radiofont">Male</label>
+                    <input type="radio" id="female" name="sex" value="1">
+                    <label class="radiofont">Female</label>
+                </label>
+
+                <h2 class="name">
+                    Chest pain type
+                </h2>
+                <select class="option" name="cp">
+
+                    <option class="optionfont" value="0">Type-1(typical angina)</option>
+                    <option class="optionfont" value="1">Type-2(atypical angina)</option>
+                    <option class="optionfont" value="2">Type-3(non-anginal pain)</option>
+                    <option class="optionfont" value="3">Type-4(asymptomatic)</option>
+                </select>
+
+                <h2 class="name">Resting Blood Pressure</h2>
+                <input class="age1" type="text" name="bp" value="">
+
+                <h2 class="name">Cholesterol</h2>
+                <input class="age1" type="text" name="chol" value="">
+
+                <h2 class="name">fasting blood sugar level (over 120)</h2>
+                <label class="radio">
+                    <input type="radio" id="yes" name="fbs" value="1">
+                    <label class="radiofont">Yes</label>
+                    <input type="radio" id="male" name="fbs" value="0">
+                    <label class="radiofont">No</label>
+                </label>
+
+                <h2 class="name">Resting Electrocardiographic results</h2>
+                <select class="option" name="ecg">
+
+                    <option class="optionfont" value="0">Normal</option>
+                    <option class="optionfont" value="1">having ST-T wave abnormality</option>
+                    <option class="optionfont" value="2">definite left ventricular hypertrophy</option>
+                </select>
+
+
+                <h2 class="name">Maximum heart rate</h2>
+                <input class="age1" type="text" name="maxhr" value="">
+
+
+                <h2 class="name">exercise induced angina</h2>
+                <label class="radio">
+                    <input type="radio" id="yes" name="EIA" value="1">
+                    <label class="radiofont">Yes</label>
+                    <input type="radio" id="male" name="EIA" value="0">
+                    <label class="radiofont">No</label>
+                </label>
+
+
+
+                <h2 class="name">oldpeak: ST depression induced by exercise relative to rest</h2>
+                <input class="age1" type="text" name="ST" value="">
+
+                <h2 class="name">slope of ST</h2>
+                <select class="option" name="slopest">
+                    <option class="optionfont" value="0">upsloping</option>
+                    <option class="optionfont" value="1">flat</option>
+                    <option class="optionfont" value="2">downsloping</option>
+                </select>
+
+                <h2 class="name">number of vessels covered by fluoroscopy</h2>
+                <input class="age1" type="text" name="nov" value="">
+
+
+
+
+                <h2 class="name">Thallium test</h2>
+                <select class="optionf" name="thal">
+
+                    <option class="optionfont" value="1">normal</option>
+                    <option class="optionfont" value="2">fixed defect</option>
+                    <option class="optionfont" value="3">reversable defect</option>
+                </select>
+
+                <h2 class="name">Potassium - Sodium %</h2>
+                <input class="Nak" type="text" name="kna" value="">
+
+
+                <input class="submit" type="submit" value="Submit">
+                <br>
+                <br>
+
+
+            </div>
+        </form>
+        {% if result %}
+        <h1 class="res">{{result}}</h1><br>
+        {% endif %}
+        {% if description %}
+        <button type="button" class="collapsible">check out Recommended drug</button>
+        <div class="content">
+            <p><b>Description:</b>{{description}}<br>
+               <b>{{drg}}</b><br>
+               <b>{{drg2}}</b><br>
+               <b>Note:</b>{{msg}}
+            </p>
+        </div>
+        <script>
+            var coll = document.getElementsByClassName("collapsible");
+            var i;
+
+            for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+             this.classList.toggle("active");
+            var content = this.nextElementSibling;
+             if (content.style.display === "block") {
+            content.style.display = "none";
+        } else {
+      content.style.display = "block";
+    }
+  });
+}
+        </script>
+
+        {% endif %}
+
+    </div>
+
+
+</body>
+</html>
