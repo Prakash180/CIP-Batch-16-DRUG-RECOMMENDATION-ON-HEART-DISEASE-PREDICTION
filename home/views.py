@@ -122,14 +122,12 @@ def predictHDisease(request):
 
        recommendeddrug=drug(age,sex,blood_pressure,cholesterol,kNa)
        print(recommendeddrug)
-       t=[[0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,0,0,0]]
-       drugs1=reloaddrug.predict(t)
-       print(drugs1[0])
-       msg="Consult a Doctor for medical advice"
+      
+       msg="Consult a Doctor for further medical advice"
        if recommendeddrug=="X":  
               description="Sodium to potassium levels is low in blood"
-              drg="Consume potassium rich foods like beet greens, yams, white beans, clams, white potatoes, sweet potatoes, avocado, pinto beans and bananas."
-              drg2="Drink a plenty of water"
+              drg="cyclosporine"
+              drg2="heparin"
        if recommendeddrug=="Y":
               description="Sodium to potassium levels is high in blood"
               drg="Sodium polystyrene sulfonate (Kayexalate)"
