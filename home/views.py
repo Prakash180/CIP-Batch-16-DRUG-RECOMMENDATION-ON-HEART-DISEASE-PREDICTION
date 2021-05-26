@@ -144,7 +144,7 @@ def predictHDisease(request):
               description="blood pressure Low"
               drg="fludrocortisone"
               drg2="midodrine"
-       if ans==0:
+       if ans==1:
           print("heart disease detected")
           result="WARNING!!! HEART DISEASE DETECTED"
           context ={'result':result,'description':description,'drg':drg,'drg2':drg2,'msg':msg}
@@ -153,7 +153,7 @@ def predictHDisease(request):
         
         
 
-       elif ans==1:
+       elif ans==0:
           print("heart disease not detected")
           result="HEART DISEASE NIL"
           context ={'result':result}
